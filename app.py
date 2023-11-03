@@ -1,11 +1,17 @@
 import streamlit as st
 import pandas_profiling
 import pandas as pd
-from streamlit_pandas_profiling import st_profile_report
 import os 
+from streamlit_pandas_profiling import st_profile_report
+from dotenv import load_dotenv
 
-if os.path.exists('./dataset.csv'): 
-    df = pd.read_csv('dataset.csv', index_col=None)
+load_dotenv()
+
+file_path = os.getenv('FILE_PATH')
+file_name = os.getenv('FILE_NAME')
+
+if os.path.exists(file_path+file_name): 
+    df = pd.read_csv(file_name, index_col=None)
 
 with st.sidebar: 
     st.image("https://www.onepointltd.com/wp-content/uploads/2020/03/inno2.png")
